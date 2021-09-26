@@ -55,9 +55,9 @@ ssh int
 
 #### Установка и настройка VPN сервера PRITUNL. Создание файла для подключения к VPN.  (Основное задание)
 
-Для установки PRITUNL пришлось изменить адрес репозитория в предложенном файле [setupvpn.sh](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/VPN/setupvpn.sh) (c *xenial* на *bionic*), т.к. иначе  установка завершалась ошибкой. Также пришлось дополнительно устанавливать *iptables* для корректной настройки и старта VPN. 
+Для установки PRITUNL пришлось изменить адрес репозитория в предложенном файле [setupvpn.sh](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/cloud-bastion/VPN/setupvpn.sh) (c *xenial* на *bionic*), т.к. иначе  установка завершалась ошибкой. Также пришлось дополнительно устанавливать *iptables* для корректной настройки и старта VPN. 
 
-Для подключения в VPN сгенерён файл [cloud-bastion.ovpn](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/VPN/cloud-bastion.ovpn)
+Для подключения в VPN сгенерён файл [cloud-bastion.ovpn](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/cloud-bastion/VPN/cloud-bastion.ovpn)
 
 #### Реализация использования  валидного  SSL сертификата  для  панели  управления  VPN сервера PRITUNL (Дополнительное задание)
 
