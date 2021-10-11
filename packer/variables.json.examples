@@ -1,0 +1,7 @@
+{
+	"folder": "xyzxyzxyzxyzxyzxyz",
+	"secret": "/tmp/key.json",
+	"source": "ubuntu-1604-lts",
+	"imgFamily": "reddit-full",
+	"logfile": "/tmp/packer.log"
+}
