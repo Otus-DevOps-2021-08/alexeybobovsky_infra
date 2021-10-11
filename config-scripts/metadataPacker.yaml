@@ -1,0 +1,10 @@
+#cloud-config
+users:
+  - name: appuser
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYQ+YhTper5axo6fMuK9qzh7EbJfDBqe5huiFepc2m0Re0BhBgZ+rOUuo0UYx6ISyZ6xI98BfvIWrIDtQfmFe/LbHQ2tcI9Dyom7B5FDoA0mnVUl0mJhF4ecTGgy9dHhndphKZQOR33qbIl7hZIOXDkXTXVSJChS1B4p6QeqFWV4BsGqQG/Y5lwpY22cr0oTQHKTDhsBGs+mHnGI48cNIYsH3aTmeT7QrTG4JV+tkduAmGk4ABsvHCAWK46iNnGFjLO6QAkdTLFRIyRnTPshSJsyO5RsK1z6thfOl64KKasyE85+YPeuRIfioReR2PjwoGriowcxHa+Osz4BhckBlJ appuser
+runcmd:
+  #nothing to do

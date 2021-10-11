@@ -4,6 +4,7 @@
 2. [Настройка локального окружения и практика ChatOps.](#lab_ChatOps) 
 3. [Запуск VM в Yandex Cloud, настройка SSH подключения, настройка SSH подключения через Bastion Host, настройка VPN сервера и VPN-подключения.](#lab_bastion)
 4. [Деплой тестового приложения в Yandex Cloud.](#cloud-testapp)
+5. [Сборка образов VM при помощи Packer.](#packer-base)
 
 ## Настройка локального окружения и практика ChatOps<a name="lab_ChatOps"></a>
 
@@ -106,3 +107,40 @@ testapp_IP = 62.84.118.196
 testapp_port = 9292
 ```
 
+## Сборка образов VM при помощи Packer.<a name="packer-base"></a>
+### План работы
+* Создание сервисного аккаунта для Packer в Yandex.Cloud.
+* Создание файла-шаблона Packer.
+* Сборка готового образа с уже установленным приложением при помощи Packer. 
+* Деплой приложения в Yandex compute cloud при помощи ранее подготовленного образа.
+* Параметризирование шаблона Packer (Самостоятельная работа)
+* Построение bake-образа* (Задание со звёздочкой)
+### Практические задачи
+#### Выполнения плана работ по сценарию в методичке (включая самостоятельное задание)
+
+Всё выполнено - образ собран и на его основе создан инстанс в облаке и в нём вручную установлено придожение **reddit**. В результате в репозиторий добавлены файлы:
+* Шаблон для Packer [ubuntu16.json](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/packer/ubuntu16.json) 
+* Файл с переменными для параметризации шаблона [variables.json.example](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/packer/variables.json.example)
+* Скрипты для установки приложений в образе [install_mongodb.sh](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/scripts/install_mongodb.sh) и [install_mongodb.sh](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/scripts/install_mongodb.sh)
+  
+#### Построение bake-образа* (Задание со звёздочкой)
+Для создания образа с задеплоенным приложением, которое управляется посредством **systemd**, в репозиторий добавлены файлы:
+* Шаблон для Packer [immutable.json](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/packer/immutable.json)
+* Скрипт для деплоя приложения в образе и созданиея для него unit модуля в  **systemd** [deploy.sh](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/scripts/deploy.sh) 
+* Скрипт для создания инстанса в Yandex.Cloud  [create-reddit-vm.sh](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/config-scripts/create-reddit-vm.sh) используя образ типа **reddit-full**
+* Файл с метаданными для добавления пользователя **appuser** [metadataPacker.yaml](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/config-scripts/metadataPacker.yaml)
+
+Для проверки работы нужно сначала собрать образ 
+
+```
+cd packer
+packer build -var-file variables.json immutable.json 
+```
+
+По окончанию успешной сборки образа нужно запустить скрипт ```create-reddit-vm.sh```
+
+```
+cd config-scripts
+./create-reddit-vm.sh 
+```
+В результате при обращению к адресу http://[NEW_VM_IP]:9292/ должна отобразиться страница приложения **Monolith Reddit** 
