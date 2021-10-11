@@ -119,16 +119,16 @@ testapp_port = 9292
 #### Выполнения плана работ по сценарию в методичке (включая самостоятельное задание)
 
 Всё выполнено - образ собран и на его основе создан инстанс в облаке и в нём вручную установлено придожение **reddit**. В результате в репозиторий добавлены файлы:
-* Шаблон для Packer [ubuntu16.json](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/ubuntu16.json) 
-* Файл с переменными для параметризации шаблона [variables.json.examples](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/variables.json.examples)
-* Скрипты для установки приложений в образе [install_mongodb.sh](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/install_mongodb.sh) и [install_mongodb.sh](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/install_mongodb.sh)
-* 
+* Шаблон для Packer [ubuntu16.json](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/packer/ubuntu16.json) 
+* Файл с переменными для параметризации шаблона [variables.json.example](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/packer/variables.json.example)
+* Скрипты для установки приложений в образе [install_mongodb.sh](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/scripts/install_mongodb.sh) и [install_mongodb.sh](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/scripts/install_mongodb.sh)
+  
 #### Построение bake-образа* (Задание со звёздочкой)
 Для создания образа с задеплоенным приложением, которое управляется посредством **systemd**, в репозиторий добавлены файлы:
-* Шаблон для Packer [immutable.json](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/immutable.json)
-* Скрипт для деплоя приложения в образе и созданиея для него unit модуля в  **systemd** [deploy.sh](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/deploy.sh) 
-* Скрипт для создания инстанса в Yandex.Cloud  [create-reddit-vm.sh](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/create-reddit-vm.sh) используя образ типа **reddit-full**
-* Файл с метаданными для добавления пользователя **appuser** [metadataPacker.yaml](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/metadataPacker.yaml)
+* Шаблон для Packer [immutable.json](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/packer/immutable.json)
+* Скрипт для деплоя приложения в образе и созданиея для него unit модуля в  **systemd** [deploy.sh](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/scripts/deploy.sh) 
+* Скрипт для создания инстанса в Yandex.Cloud  [create-reddit-vm.sh](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/config-scripts/create-reddit-vm.sh) используя образ типа **reddit-full**
+* Файл с метаданными для добавления пользователя **appuser** [metadataPacker.yaml](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/packer-base/config-scripts/metadataPacker.yaml)
 
 Для проверки работы нужно сначала собрать образ 
 
