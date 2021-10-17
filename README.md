@@ -173,3 +173,4 @@ cd config-scripts
     validate           Validates the Terraform files
     version            Prints the Terraform version
   ```
+
