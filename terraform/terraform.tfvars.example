@@ -1,0 +1,8 @@
+cloud_id                 = "b1gvdtfteghbafm33df2"
+folder_id                = "b1gg85hu9jru1le0g6jo"
+zone                     = "ru-central1-a"
+image_id                 = "fd8ch9ps3ef8l3totidj"
+service_account_key_file = "/home/vagrant/.ssh/key.json"
+public_key_path          = "/home/vagrant/.ssh/appuser.pub"
+subnet_id                = "e9b16qtd0d5ugpoht94h"
+private_key_path         = "/home/vagrant/.ssh/appuser"

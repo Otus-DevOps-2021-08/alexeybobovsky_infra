@@ -5,6 +5,7 @@
 3. [Запуск VM в Yandex Cloud, настройка SSH подключения, настройка SSH подключения через Bastion Host, настройка VPN сервера и VPN-подключения.](#lab_bastion)
 4. [Деплой тестового приложения в Yandex Cloud.](#cloud-testapp)
 5. [Сборка образов VM при помощи Packer.](#packer-base)
+6. [Знакомство с Terraform. Описание инфраструктуры в виде кода (IaC).](#terraform-1)
 
 ## Настройка локального окружения и практика ChatOps<a name="lab_ChatOps"></a>
 
@@ -144,3 +145,32 @@ cd config-scripts
 ./create-reddit-vm.sh 
 ```
 В результате при обращению к адресу http://[NEW_VM_IP]:9292/ должна отобразиться страница приложения **Monolith Reddit** 
+
+## Знакомство с Terraform. Описание инфраструктуры в виде кода (IaC). <a name="terraform-1"></a>
+### План работы
+* Установка Terraform.  
+* Декларативное описание в виде кода инфраструктуры YC, требуемой для запуска тестового приложения.
+* Изучение основных комманнд Terraform.
+* Изучение разных вариантов описания инфраструктуры в Terraform: с параметризацией и без.
+* Создание инстанса в YC с установленным приложением при помощи Terraform. 
+
+### Практические задачи
+#### Выполнения плана работ по сценарию в методичке (включая самостоятельное задание)
+* Создан основной конфиг с описанием создаваемого инстанса и описанием провиженеров  [main.tf](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/terraform-1/terraform/main.tf).
+* Добавлены вспомогательные конфигурационные файлы для провиженинга и с описанием переменных [./terraform/](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/blob/terraform-1/terraform/).
+* Выработаны навыки работы с основными коммандами Terraform:
+  ```
+    apply              Builds or changes infrastructure
+    destroy            Destroy Terraform-managed infrastructure
+    fmt                Rewrites config files to canonical format
+    get                Download and install modules for the configuration
+    init               Initialize a Terraform working directory
+    output             Read an output from a state file
+    plan               Generate and show an execution plan
+    providers          Prints a tree of the providers used in the configuration
+    show               Inspect Terraform state or plan
+    taint              Manually mark a resource for recreation
+    validate           Validates the Terraform files
+    version            Prints the Terraform version
+  ```
+
