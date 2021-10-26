@@ -6,6 +6,7 @@
 4. [Деплой тестового приложения в Yandex Cloud.](#cloud-testapp)
 5. [Сборка образов VM при помощи Packer.](#packer-base)
 6. [Знакомство с Terraform. Описание инфраструктуры в виде кода (IaC).](#terraform-1)
+7. [Создание Terraform модулей для управления компонентами инфраструктуры.](#terraform-2)
 
 ## Настройка локального окружения и практика ChatOps<a name="lab_ChatOps"></a>
 
@@ -173,4 +174,12 @@ cd config-scripts
     validate           Validates the Terraform files
     version            Prints the Terraform version
   ```
-
+## Создание Terraform модулей для управления компонентами инфраструктуры. <a name="terraform-2"></a>
+### План работы
+* Работа с ресурсами и зависимостями.  
+* Структуризация ресурсов.
+* Работа с модулями.
+### Практические задачи
+#### Выполнения плана работ по сценарию в методичке (включая самостоятельное задание)
+* Созданы terraform модули [DB](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/tree/terraform-2/terraform/modules/db) и [APP](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/tree/terraform-2/terraform/modules/app).
+* Созданы конфигураци для развёртывания инфраструктуры в окружениях [stage](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/tree/terraform-2/terraform/stage) и [prod](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/tree/terraform-2/terraform/prod).
