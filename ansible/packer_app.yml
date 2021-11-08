@@ -1,0 +1,12 @@
+---
+- name: Install Ruby and Bundler
+  hosts: default
+  gather_facts: false
+  become: true
+  tasks:
+  - name: Install ruby, gems and packages
+    apt: "name={{ item }} state=present"
+    with_items:
+      - ruby-full
+      - ruby-bundler
+      - build-essential
