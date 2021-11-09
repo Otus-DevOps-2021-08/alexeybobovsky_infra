@@ -1,6 +1,6 @@
 {
 	"folder": "xyzxyzxyzxyzxyzxyz",
-	"secret": "key.json.example",
+	"secret": "packer/key.json.example",
 	"source": "ubuntu-1604-lts",
 	"imgFamily": "reddit-full",
 	"logfile": "packer.log"

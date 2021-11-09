@@ -5,8 +5,8 @@
             "service_account_key_file": "{{ user `secret` }}",
             "folder_id":  "{{ user `folder` }}",
             "source_image_family": "{{ user `source` }}",
-            "image_name": "reddit-db-base",
-            "image_family": "reddit-db-base",
+            "image_name": "reddit-db-base-a",
+            "image_family": "reddit-db-base-a",
             "ssh_username": "ubuntu",
             "platform_id": "standard-v1",
             "use_ipv4_nat": true,
@@ -15,10 +15,9 @@
     ],
     "provisioners": [
         {
-            "type": "shell",
-            "script": "scripts/install_mongodb.sh",
-            "execute_command": "sudo {{.Path}}",
-            "pause_before": "60s"
+            "type": "ansible",
+            "playbook_file": "ansible/packer_db.yml",
+            "pause_before": "30s"
         }
     ]
 }

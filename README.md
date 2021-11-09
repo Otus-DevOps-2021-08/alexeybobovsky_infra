@@ -8,6 +8,7 @@
 6. [Знакомство с Terraform. Описание инфраструктуры в виде кода (IaC).](#terraform-1)
 7. [Создание Terraform модулей для управления компонентами инфраструктуры.](#terraform-2)
 8. [Написание Ansible плейбуков на основе имеющихся bash скриптов.](#ansible-1)
+9. [Управление настройками хостов и деплой приложения при помощи Ansible.](#ansible-2)
 
 ## ДЗ 2. Настройка локального окружения и практика ChatOps<a name="lab_ChatOps"></a>
 
@@ -109,6 +110,11 @@ yc compute instance create \
 testapp_IP = 62.84.118.196 
 testapp_port = 9292
 ```
+Комманды для работы с yc
+```
+yc resource-manager folder list //список каталогов с идентификаторами для облака по умолчанию:
+yc compute image list           //список образов
+```
 
 ## ДЗ 5. Сборка образов VM при помощи Packer.<a name="packer-base"></a>
 ### План работы
@@ -184,7 +190,7 @@ cd config-scripts
 #### Выполнения плана работ по сценарию в методичке (включая самостоятельное задание)
 * Созданы terraform модули [DB](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/tree/terraform-2/terraform/modules/db) и [APP](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/tree/terraform-2/terraform/modules/app).
 * Созданы конфигураци для развёртывания инфраструктуры в окружениях [stage](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/tree/terraform-2/terraform/stage) и [prod](https://github.com/Otus-DevOps-2021-08/alexeybobovsky_infra/tree/terraform-2/terraform/prod).
-## ДЗ 8. Написание Ansible плейбуков на основе имеющихся bash скриптов. <a name="ansible-1"></a>
+## ДЗ 8. Написание  Ansible плейбуков на основе имеющихся bash скриптов. <a name="ansible-1"></a>
 ### План работы
 * Установка Ansible
 * Знакомство с базовыми функциями и инвентори
@@ -207,3 +213,47 @@ cd config-scripts
 	ansible-playbook clone.yml			//запуск плейбуки
 
   ```
+
+## ДЗ 9. Управление настройками хостов и деплой приложения при помощи Ansible. <a name="ansible-2"></a>
+
+### План работы
+* Освоение плейбуков, хендлеров и шаблонов для конфигурации окружения и деплоя тестового приложения.
+* Отработка подхода один плейбук - один сценарий (play).
+* Отработка подхода один плейбук - много сценариев.
+* Несколько плейбуков.
+* Изменение провижнинга образов Packer на Ansible-плейбуки.
+### Практические задачи
+#### Выполнения плана работ по сценарию в методичке 
+* Создан *playbook* c одним сценарием для разных групп хостов (управляется посредством *tags*).
+* Создан *playbook* c разными сценариями для разных групп хостов.
+* Созданы отдельные плейбуки для разных групп хостов. Посредством импорта вызаваются и отрабатывают из одного файла.
+* Изменены сценарии провижненинга для создания образов посредством *Packer*: вместо bash скриптов используются ansible playbooks.
+### Useful things 
+
+Комманды
+  ```
+    ansible-playbook reddit_app.yml --check --limit db //Пробный прогон
+  ```
+
+Модули
+  ```
+    copy        //копировании простого файла на удаленный хост
+    systemd     //для настройки и управления модулями systemd
+    apt
+    shell
+  ```
+Конструкции 
+
+  ```
+  #циклы
+  
+  - name: Some task with loop
+    apt: "name={{ item }} state=present"
+    with_items:
+      - ruby-full
+      - ruby-bundler
+      - build-essential
+  ```
+
+
+
