@@ -1,6 +1,5 @@
 - name: Deploy App
   hosts: app
-#  tags: deploy-tag
   tasks:
     - name: Fetch the latest version of application code
       git:
@@ -8,14 +7,12 @@
         dest: /home/ubuntu/reddit
         version: monolith
       notify: restart puma
-
     - name: bundle install
       bundler:
         state: present
         chdir: /home/ubuntu/reddit
-
   handlers:
+
   - name: restart puma
     become: true
     systemd: name=puma state=restarted
-
